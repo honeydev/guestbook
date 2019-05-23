@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>{{ app_name }}</title>
+    <meta charset="utf-8">
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+	<link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+	<link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+</head>
+<body>
+	<h1 style="text-align: center; margin-top: 20px;">{{ app_name }}</h1>
+	<div class="container">
+	   {% for note in notes %}
+	   <div class="row">
+		   <div class="column">
+		   <article>
+			   <h2>{{ note.title }}</h2>
+			   <p>{{ note.body }}</p>
+			   <ul>
+				   <li>Author: {{ note.author }}</li>
+				   <li>Created data: {{ note.creation }}</li>
+			   </ul>
+		   </article>
+		   </div>
+	   </div>
+	   {% endfor %}
+</body>
+</html>
