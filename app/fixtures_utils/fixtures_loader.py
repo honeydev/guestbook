@@ -1,33 +1,42 @@
-import sqlite3
-
-from main import DATABASE
 from app.fixtures_utils.fixtures_parser import FixturesParser
+from app.connection import Connection
 
 
 class FixtureLoaderException(Exception):
-    pass
+    """ Fixture exceptions. """
+
+
+class UsersLoader:
+
+    def load(self, user_fixture: dict) -> None:
+        connection: Connection = Connection.get_connection()
+        connection.insert(f'''
+            INSERT INTO users (login, hash) VALUES (
+                "{user_fixture['login']}",
+                "{user_fixture['hash']}"
+                )
+        ''')
 
 
 class NotesLoader:
 
     def load(self, note_fixture: dict) -> None:
-        connect = sqlite3.connect(DATABASE)
-        cursor = connect.cursor()
-        cursor.execute(f'''
-            INSERT INTO notes (title, body, author) VALUES (
+        connection: Connection = Connection.get_connection()
+        connection.insert(f'''
+            INSERT INTO notes (title, body, author, user_id) VALUES (
                 "{note_fixture['title']}",
                 "{note_fixture['body']}",
-                "{note_fixture['author']}"
+                "{note_fixture['author']}",
+                "{note_fixture['user_id']}"
                 )
         ''')
-        connect.commit()
-        connect.close()
 
 
 
 class FixturesLoader:
 
     LOADERS = {
+        'users': UsersLoader,
         'notes': NotesLoader
     }
 

@@ -9,6 +9,8 @@ verify_ssl = true
 flask = "*"
 pylint = "*"
 requests = "*"
+faker = "*"
+wtforms = "*"
 
 [requires]
 python_version = "3.7"

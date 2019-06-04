@@ -8,14 +8,10 @@ from main import FIXTURES_FOLDER
 class FixturesParser:
 
     def __init__(self):
-        # import pdb; pdb.set_trace()
         fixtures_names: list = [fixture for _, _, fixture in os.walk(FIXTURES_FOLDER)][0]
         self._fixtures = []
         for fixture_name in fixtures_names:
             self._fixtures.append(f'{FIXTURES_FOLDER}/{fixture_name}')
-
-        # import pdb; pdb.set_trace()
-        # self._fixtures = list(map(lambda fixture_name: f'{FIXTURES_FOLDER}/{fixture_name}', fixtures_names))
 
     def parse(self, fixture_type: str = 'all') -> tuple:
 

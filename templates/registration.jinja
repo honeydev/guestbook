@@ -1,0 +1,18 @@
+{% extends 'base.jinja' %}
+{% from "formmacro.jinja" import render_field %}
+{% block content %}
+    <div class="container">
+  <div class="row">
+      <div class="column column-33 column-offset-33">
+        <div class="column">
+        <form action="{{ url_for('registration') }}" method="POST">
+            {{ render_field(form.login) }}
+            {{ render_field(form.password) }}
+            {{ render_field(form.password_repeat) }}
+            <input class="button-primary"  type="submit" value="Send">
+        </form>
+      </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
