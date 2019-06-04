@@ -19,18 +19,11 @@ TEST_MODE = bool(os.environ.get('TEST_MODE'))
 
 @app.route('/')
 def index():
-    connect = sqlite3.connect(DATABASE)
-    cursor = connect.cursor()
-    notes_query = cursor.execute("SELECT * FROM notes")
-    headers = tuple(
-        map(lambda description: description[0], notes_query.description)
-    )
-    notes = notes_query.fetchall()
-    notes_dicts = list(
-        map(lambda row: dict(zip(headers, row)), notes)
-    )
+    from app.models.notes import Notes
+    from app.connection import Connection
 
-    return render_template('index.html', app_name=APP_NAME, notes=notes_dicts)
+    users = Notes(Connection.get_connection())
+    return render_template('index.html', app_name=APP_NAME, notes=users.select_all())
 
 
 @app.route('/registration', methods=['GET', 'POST'])
