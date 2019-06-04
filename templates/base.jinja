@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>{{ app_name }}</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+    <style>
+      .navList {
+        list-style: none;
+      }
+
+      .navList li {
+        display: inline;
+      }
+    </style>
+</head>
+<body>
+  <head>
+    <div class="container">
+      <div class="row">
+          <div class="column column-33 column-offset-25">
+            <nav>
+              <ul class="navList">
+                <li><a href="/login">Login</a></li>
+                <li><a href="{{ url_for('registration') }}">Register</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+  </head>
+  {% block content %}{% endblock %}
+</body>
+</html>
