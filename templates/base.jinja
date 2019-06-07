@@ -23,8 +23,12 @@
           <div class="column column-33 column-offset-25">
             <nav>
               <ul class="navList">
-                <li><a href="/login">Login</a></li>
-                <li><a href="{{ url_for('registration') }}">Register</a></li>
+                  {%  if auth %}
+                    <li>Hello, {{ user.login }}<a href="/logout"> | Logout</a></li>
+                  {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('registration') }}">Register</a></li>
+                  {% endif %}
               </ul>
             </nav>
           </div>
